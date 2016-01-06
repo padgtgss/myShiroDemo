@@ -10,4 +10,6 @@ import com.persist.User;
 public interface UserService {
 
     User login(String username,String password);
+
+    User login(String username);
 }

@@ -17,9 +17,12 @@
     </bean>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/login"/>
+        <!--登录页面设置-->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!--登录成功页面-->
         <property name="successUrl" value="/loginSuccess"/>
-        <property name="unauthorizedUrl" value="/index.jsp"/>
+        <!--权限不足默认返回的页面-->
+        <property name="unauthorizedUrl" value="/error.jsp"/>
         <property name="filters">
             <util:map id="map">
                 <entry key="authc">
@@ -30,9 +33,9 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                /login = authc
                 /user/** = authc
-                /*.jsp =anon
+                /index.jsp =anon
+                /login.jsp = anon
                 /*.html = anon
                 /*.js = anon
                 /*.css = anon

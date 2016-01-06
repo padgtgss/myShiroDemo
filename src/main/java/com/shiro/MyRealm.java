@@ -28,7 +28,7 @@ public class MyRealm extends AuthorizingRealm {
         User user = (User) principals.fromRealm(getName()).iterator().next();
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            info.addStringPermissions(ImmutableList.of("admin"));
+            info.addStringPermissions(ImmutableList.of(user.getHasRole()));
             return info;
         } else {
             return null;
@@ -40,7 +40,7 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-        User user = userService.login(upToken.getUsername(), upToken.getPassword().toString());
+        User user = userService.login(upToken.getUsername());   //无需验证密码，shiro会自动比对
         if (user == null) {
             throw new UnknownAccountException("No account found for user [" + user.getUsername() + "]");
         }

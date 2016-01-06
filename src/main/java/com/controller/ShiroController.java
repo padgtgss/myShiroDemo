@@ -13,16 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ShiroController {
 
-    @RequestMapping(value = "/login")
-    public String login(String password, String username) {
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        System.out.println("9798798");
-        return "redirect:login.jsp";
 
-    }
 
     @RequestMapping(value = "/list")
     public String list(){
+        Object principal = SecurityUtils.getSubject().getPrincipal();
         System.out.println("go to list jsp");
         return "list";
     }

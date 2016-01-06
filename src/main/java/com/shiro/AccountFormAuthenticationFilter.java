@@ -3,6 +3,7 @@ package com.shiro;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -27,6 +28,7 @@ public class AccountFormAuthenticationFilter extends FormAuthenticationFilter {
         if(session != null){
             session.setAttribute(WebUtils.SAVED_REQUEST_KEY,null);
         }
+
 
         UsernamePasswordToken token = new UsernamePasswordToken(
                 getUsername(request),

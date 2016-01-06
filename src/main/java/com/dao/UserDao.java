@@ -10,4 +10,6 @@ import com.persist.User;
 public interface UserDao {
 
     User get(String username,String password);
+
+    User login(String username);
 }
